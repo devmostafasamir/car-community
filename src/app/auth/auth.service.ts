@@ -2,7 +2,15 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { Observable, tap } from 'rxjs';
-import { AuthResponse, LoginRequest, RegisterRequest, UserProfile } from './models/auth.models';
+import { 
+  AuthResponse, 
+  LoginRequest, 
+  RegisterRequest, 
+  UserProfile,
+  ForgotPasswordRequest,
+  ResetPasswordRequest,
+  ChangePasswordRequest 
+} from './models/auth.models';
 
 @Injectable({
   providedIn: 'root'
@@ -22,8 +30,8 @@ export class AuthService {
     );
   }
 
-  register(payload: RegisterRequest) {
-    return this.http.post(`${this.base}/register`, payload);
+  register(payload: RegisterRequest): Observable<AuthResponse> {
+    return this.http.post<AuthResponse>(`${this.base}/register`, payload);
   }
 
   logout() {
@@ -36,5 +44,17 @@ export class AuthService {
 
   getProfile(): Observable<UserProfile> {
     return this.http.get<UserProfile>(`${this.base}/profile`);
+  }
+
+  forgotPassword(payload: ForgotPasswordRequest): Observable<void> {
+    return this.http.post<void>(`${this.base}/forgot-password`, payload);
+  }
+
+  resetPassword(payload: ResetPasswordRequest): Observable<void> {
+    return this.http.post<void>(`${this.base}/reset-password`, payload);
+  }
+
+  changePassword(payload: ChangePasswordRequest): Observable<void> {
+    return this.http.post<void>(`${this.base}/change-password`, payload);
   }
 }

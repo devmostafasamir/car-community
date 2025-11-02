@@ -1,8 +1,8 @@
-import { Injectable } from '@angular/core';
-
-@Injectable({
-  providedIn: 'root',
-})
-export class Car {
-  
+export interface Car {
+  id?: string;
+  make: string;
+  model: string;
+  year: number;
+  price: number;
+  description?: string;
 }

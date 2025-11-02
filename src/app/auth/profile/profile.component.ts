@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { UserProfile } from '../models/auth.models';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-profile',
@@ -10,14 +10,15 @@ import { FormBuilder } from '@angular/forms';
 export class ProfileComponent implements OnInit {
   profile: UserProfile | null = null;
   formReady = false;
+  form: FormGroup;
 
-  form = this.fb.group({
-    fullName: [''],
-    email: [{value: '', disabled: true}],
-    phoneNumber: ['']
-  });
-
-  constructor(private auth: AuthService, private fb: FormBuilder) {}
+  constructor(private auth: AuthService, private fb: FormBuilder) {
+    this.form = this.fb.group({
+      fullName: [''],
+      email: [{value: '', disabled: true}],
+      phoneNumber: ['']
+    });
+  }
 
   ngOnInit() {
     this.auth.getProfile().subscribe({

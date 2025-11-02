@@ -1,0 +1,24 @@
+<div *ngIf="!formReady">Loading...</div>
+
+<div *ngIf="formReady" class="profile-card">
+  <h2>Profile</h2>
+
+  <form [formGroup]="form" (ngSubmit)="save()">
+    <div>
+      <label for="fullName">Full name</label>
+      <input id="fullName" formControlName="fullName" placeholder="Enter your full name" title="Full name" />
+    </div>
+
+    <div>
+      <label for="email">Email</label>
+      <input id="email" formControlName="email" disabled placeholder="Your email address" title="Email" />
+    </div>
+
+    <div>
+      <label for="phoneNumber">Phone</label>
+      <input id="phoneNumber" formControlName="phoneNumber" placeholder="Enter your phone number" title="Phone" />
+    </div>
+
+    <button type="submit">Save</button>
+  </form>
+</div>

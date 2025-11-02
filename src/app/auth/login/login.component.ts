@@ -3,16 +3,14 @@ import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { LoginRequest } from '../models/auth.models';
-import { finalize } from 'rxjs';
 
 @Component({
   selector: 'app-login',
-  templateUrl: './login.html',
-  styleUrls: ['./login.scss']
+  templateUrl: './login.component.html'
 })
 export class LoginComponent {
   form: FormGroup;
-  hidePassword = true;
+
   loading = false;
   error: string | null = null;
 
@@ -31,17 +29,15 @@ export class LoginComponent {
       email: this.form.value.email!,
       password: this.form.value.password!
     };
-    
-    this.auth.login(payload)
-      .pipe(finalize(() => this.loading = false))
-      .subscribe({
-        next: () => {
-          this.router.navigate(['/dashboard']); // or redirect to intended route
-        },
-        error: (err) => {
-          console.error('Login failed:', err);
-          this.error = err?.error?.message || 'Invalid email or password. Please try again.';
-        }
-      });
+    this.auth.login(payload).subscribe({
+      next: () => {
+        this.loading = false;
+        this.router.navigate(['/dashboard']); // or redirect to intended route
+      },
+      error: (err) => {
+        this.loading = false;
+        this.error = err?.error || 'Login failed';
+      }
+    });
   }
 }

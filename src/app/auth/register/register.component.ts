@@ -1,24 +1,27 @@
 import { Component } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
+import { RegisterRequest } from '../models/auth.models';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html'
 })
 export class RegisterComponent {
-  form = this.fb.group({
-    fullName: ['', [Validators.required, Validators.minLength(3)]],
-    email: ['', [Validators.required, Validators.email]],
-    password: ['', [Validators.required, Validators.minLength(6)]],
-    confirmPassword: ['', [Validators.required]]
-  });
+  form: FormGroup;
 
   loading = false;
   error: string | null = null;
 
-  constructor(private fb: FormBuilder, private auth: AuthService, private router: Router) {}
+  constructor(private fb: FormBuilder, private auth: AuthService, private router: Router) {
+    this.form = this.fb.group({
+      fullName: ['', [Validators.required, Validators.minLength(3)]],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      confirmPassword: ['', [Validators.required]]
+    });
+  }
 
   submit() {
     this.error = null;
@@ -30,10 +33,10 @@ export class RegisterComponent {
     }
 
     this.loading = true;
-    const payload = {
-      fullName: this.form.value.fullName,
-      email: this.form.value.email,
-      password: this.form.value.password
+    const payload: RegisterRequest = {
+      fullName: this.form.value.fullName!,
+      email: this.form.value.email!,
+      password: this.form.value.password!
     };
 
     this.auth.register(payload).subscribe({

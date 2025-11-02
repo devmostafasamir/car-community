@@ -1,13 +1,14 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { environment } from "environments/environment";
+import { Observable } from "rxjs";
+import { environment } from "../../environments/environment";
 
 @Injectable({ providedIn: 'root' })
 export class DashboardService {
   private baseUrl = environment.apiUrl + '/dashboard';
   constructor(private http: HttpClient) {}
 
-  getSummary() {
+  getSummary(): Observable<any> {
     return this.http.get(`${this.baseUrl}/summary`);
   }
 }
