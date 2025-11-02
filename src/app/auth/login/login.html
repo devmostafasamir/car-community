@@ -1,0 +1,32 @@
+<div class="auth-card">
+  <h2>Login</h2>
+
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <div>
+      <label>Email</label>
+      <input formControlName="email" type="email" />
+      <div *ngIf="form.get('email')?.touched && form.get('email')?.invalid">
+        <small *ngIf="form.get('email')?.errors?.['required']">Email is required</small>
+        <small *ngIf="form.get('email')?.errors?.['email']">Invalid email</small>
+      </div>
+    </div>
+
+    <div>
+      <label>Password</label>
+      <input formControlName="password" type="password" />
+      <div *ngIf="form.get('password')?.touched && form.get('password')?.invalid">
+        <small *ngIf="form.get('password')?.errors?.['required']">Password is required</small>
+        <small *ngIf="form.get('password')?.errors?.['minlength']">Min 6 chars</small>
+      </div>
+    </div>
+
+    <div *ngIf="error" class="error">{{ error }}</div>
+
+    <button type="submit" [disabled]="loading">Login</button>
+
+    <div class="links">
+      <a routerLink="/auth/forgot-password">Forgot password?</a>
+      <a routerLink="/auth/register">Create account</a>
+    </div>
+  </form>
+</div>
