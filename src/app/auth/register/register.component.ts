@@ -60,9 +60,18 @@ export class RegisterComponent {
         this.loading = false;
         this.router.navigate(['/auth/login']);
       },
-      error: (err) => {
+      error: (err: any) => {
         this.loading = false;
-        this.error = err?.error || 'Registration failed';
+        // Handle different error types
+        if (err?.error?.message) {
+          this.error = err.error.message;
+        } else if (err?.message) {
+          this.error = err.message;
+        } else if (typeof err === 'string') {
+          this.error = err;
+        } else {
+          this.error = 'Registration failed. Please try again.';
+        }
       }
     });
   }

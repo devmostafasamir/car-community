@@ -23,7 +23,8 @@
                placeholder="Enter your password"
                autocomplete="current-password" required>
         <button mat-icon-button matSuffix type="button"
-                (click)="hidePassword = !hidePassword"
+                (click)="hidePassword = !hidePassword; $event.preventDefault()"
+                class="visibility-toggle"
                 [attr.aria-label]="hidePassword ? 'Show password' : 'Hide password'"
                 [attr.aria-pressed]="!hidePassword">
           <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
@@ -43,14 +44,15 @@
       <div class="actions">
         <button mat-raised-button color="primary" type="submit" 
                 [disabled]="form.invalid || loading">
-          Login
+          <span *ngIf="!loading">Login</span>
+          <span *ngIf="loading">Logging in...</span>
           <mat-spinner diameter="20" *ngIf="loading" class="spinner"></mat-spinner>
         </button>
       </div>
 
       <div class="links">
-        <a mat-button routerLink="/auth/forgot-password">Forgot password?</a>
-        <a mat-button routerLink="/auth/register" color="accent">Create account</a>
+        <a routerLink="/auth/forgot-password">Forgot password?</a>
+        <a routerLink="/auth/register" color="accent">Create account</a>
       </div>
     </form>
   </div>

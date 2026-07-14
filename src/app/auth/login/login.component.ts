@@ -53,11 +53,20 @@ export class LoginComponent {
     this.auth.login(payload).subscribe({
       next: () => {
         this.loading = false;
-        this.router.navigate(['/dashboard']); // or redirect to intended route
+        this.router.navigate(['/dashboard']);
       },
-      error: (err) => {
+      error: (err: any) => {
         this.loading = false;
-        this.error = err?.error || 'Login failed';
+        // Handle different error types
+        if (err?.error?.message) {
+          this.error = err.error.message;
+        } else if (err?.message) {
+          this.error = err.message;
+        } else if (typeof err === 'string') {
+          this.error = err;
+        } else {
+          this.error = 'Login failed. Please try again.';
+        }
       }
     });
   }
