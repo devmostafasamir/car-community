@@ -62,7 +62,7 @@
 
         <!-- Image -->
         <div class="h-48 overflow-hidden">
-          <img [src]="car.image" [alt]="car.make + ' ' + car.model"
+          <img imgFallback="car" [src]="car.image" [alt]="car.make + ' ' + car.model"
             class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" loading="lazy" />
         </div>
 
@@ -91,7 +91,7 @@
           </div>
 
           <div class="flex items-center gap-2 pt-3.5 border-t border-white/[.07] min-w-0">
-            <img [src]="car.ownerImage" [alt]="car.owner"
+            <img imgFallback="avatar" [src]="car.ownerImage" [alt]="car.owner"
               class="w-6 h-6 rounded-full object-cover border border-white/[.18] shrink-0" />
             <span class="text-[0.78rem] text-white/50 overflow-hidden text-ellipsis whitespace-nowrap">{{ car.owner }}</span>
           </div>

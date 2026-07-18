@@ -52,7 +52,7 @@
       <!-- Top: avatar + info -->
       <div class="flex items-start gap-3.5 mb-3.5">
         <div class="relative shrink-0">
-          <img [src]="user.profileImage" [alt]="user.fullName"
+          <img imgFallback="avatar" [src]="user.profileImage" [alt]="user.fullName"
             class="w-14 h-14 rounded-full object-cover border-2 border-white/[.18]" />
           @if (user.isVerified) {
             <span class="absolute bottom-0 right-0 w-[18px] h-[18px] bg-teal-500 rounded-full flex items-center justify-center border-2 border-[#0f172a]">

@@ -15,7 +15,7 @@
     <div class="mb-8 pb-6 border-b border-white/10">
       <div class="flex justify-between items-start gap-4 mb-6 flex-wrap">
         <div class="flex items-center gap-3 flex-1 min-w-0">
-          <img [src]="post.authorImage" [alt]="post.author"
+          <img imgFallback="avatar" [src]="post.authorImage" [alt]="post.author"
             class="w-12 h-12 rounded-full object-cover shrink-0" />
           <div>
             <div class="font-semibold text-white">{{ post.author }}</div>
@@ -30,7 +30,7 @@
     <!-- Image -->
     @if (post.image) {
       <div class="my-8 rounded-xl overflow-hidden max-h-[500px]">
-        <img [src]="post.image" [alt]="post.title" class="w-full h-auto block object-cover" />
+        <img imgFallback="car" [src]="post.image" [alt]="post.title" class="w-full h-auto block object-cover" />
       </div>
     }
 
@@ -68,7 +68,7 @@
 
       <!-- Add comment -->
       <div class="flex gap-4 mb-8 p-6 bg-white/[.05] rounded-xl border border-white/10 flex-col sm:flex-row">
-        <img src="https://i.pravatar.cc/150?img=5" alt="You"
+        <img imgFallback="avatar" src="https://i.pravatar.cc/150?img=5" alt="You"
           class="w-10 h-10 sm:w-10 sm:h-10 rounded-full object-cover shrink-0" />
         <div class="flex flex-col gap-3 flex-1">
           <textarea class="field-textarea" [(ngModel)]="newComment"
@@ -85,7 +85,7 @@
         <div class="flex flex-col gap-6">
           @for (comment of post.comments; track comment.id) {
             <div class="flex gap-4 p-4 bg-white/[.03] rounded-xl border border-white/[.05]">
-              <img [src]="comment.authorImage" [alt]="comment.author"
+              <img imgFallback="avatar" [src]="comment.authorImage" [alt]="comment.author"
                 class="w-9 h-9 rounded-full object-cover shrink-0" />
               <div class="flex-1 min-w-0">
                 <div class="flex items-center gap-3 mb-2 flex-wrap">

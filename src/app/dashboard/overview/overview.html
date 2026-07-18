@@ -65,7 +65,7 @@
       @for (car of recentCars; track car.id) {
         <a [routerLink]="['/cars', car.id]"
           class="flex items-center gap-3 p-2.5 rounded-[10px] bg-white/[.03] no-underline transition-colors hover:bg-white/[.07] min-w-0">
-          <img [src]="car.image" [alt]="car.make"
+          <img imgFallback="car" [src]="car.image" [alt]="car.make"
             class="w-13 h-9.5 rounded-lg object-cover shrink-0" style="width:52px;height:38px" />
           <div class="flex-1 min-w-0">
             <div class="text-[0.82rem] font-semibold text-white overflow-hidden text-ellipsis whitespace-nowrap">{{ car.year }} {{ car.make }} {{ car.model }}</div>
@@ -89,7 +89,7 @@
       @for (post of recentPosts; track post.id) {
         <a routerLink="/posts"
           class="flex items-center gap-3 p-2.5 rounded-[10px] bg-white/[.03] no-underline transition-colors hover:bg-white/[.07] min-w-0">
-          <img [src]="post.authorImage" [alt]="post.author"
+          <img imgFallback="avatar" [src]="post.authorImage" [alt]="post.author"
             class="w-9.5 h-9.5 rounded-full object-cover shrink-0 border border-white/[.12]" style="width:38px;height:38px" />
           <div class="flex-1 min-w-0">
             <div class="text-[0.82rem] font-semibold text-white overflow-hidden text-ellipsis whitespace-nowrap">{{ post.title }}</div>
@@ -144,7 +144,7 @@
       @for (user of topMembers; track user.id) {
         <a routerLink="/customers"
           class="flex items-center gap-3 p-2.5 rounded-[10px] bg-white/[.03] no-underline transition-colors hover:bg-white/[.07] min-w-0">
-          <img [src]="user.profileImage" [alt]="user.fullName"
+          <img imgFallback="avatar" [src]="user.profileImage" [alt]="user.fullName"
             class="rounded-full object-cover shrink-0 border border-white/[.12]" style="width:38px;height:38px" />
           <div class="flex-1 min-w-0">
             <div class="text-[0.82rem] font-semibold text-white overflow-hidden text-ellipsis whitespace-nowrap flex items-center gap-1">

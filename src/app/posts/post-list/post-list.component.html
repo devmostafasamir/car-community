@@ -38,7 +38,7 @@
       <div class="flex-1 min-w-0">
         <!-- Author row -->
         <div class="flex items-center gap-3 mb-3.5 flex-wrap">
-          <img [src]="post.authorImage" [alt]="post.author"
+          <img imgFallback="avatar" [src]="post.authorImage" [alt]="post.author"
             class="w-10 h-10 rounded-full object-cover border border-white/[.14] shrink-0" />
           <div>
             <div class="text-sm font-semibold text-white whitespace-nowrap">{{ post.author }}</div>
@@ -78,7 +78,7 @@
           <div class="flex flex-col gap-2">
             @for (comment of post.comments.slice(0, 2); track comment.id) {
               <div class="flex items-start gap-2 min-w-0">
-                <img [src]="comment.authorImage" [alt]="comment.author"
+                <img imgFallback="avatar" [src]="comment.authorImage" [alt]="comment.author"
                   class="w-6 h-6 rounded-full object-cover shrink-0 mt-0.5" />
                 <div class="bg-white/[.04] rounded-lg px-2.5 py-1.5 text-[0.78rem] min-w-0">
                   <span class="font-semibold text-white mr-1.5">{{ comment.author }}</span>
@@ -93,7 +93,7 @@
       <!-- Post image (desktop only) -->
       @if (post.image) {
         <div class="hidden md:block w-40 shrink-0">
-          <img [src]="post.image" [alt]="post.title"
+          <img imgFallback="car" [src]="post.image" [alt]="post.title"
             class="w-full h-[120px] object-cover rounded-xl" />
         </div>
       }

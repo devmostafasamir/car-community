@@ -26,7 +26,7 @@
       <!-- Left: image + owner -->
       <div>
         <div class="relative rounded-xl overflow-hidden aspect-[4/3]">
-          <img [src]="car.image" [alt]="car.make + ' ' + car.model" class="w-full h-full object-cover" />
+          <img imgFallback="car" [src]="car.image" [alt]="car.make + ' ' + car.model" class="w-full h-full object-cover" />
           @if (car.featured) {
             <span class="featured-badge"><mat-icon>star</mat-icon> Featured</span>
           }
@@ -34,7 +34,7 @@
 
         <!-- Owner card -->
         <div class="flex items-center gap-3.5 mt-4 p-4 glass-card flex-wrap">
-          <img [src]="car.ownerImage" [alt]="car.owner"
+          <img imgFallback="avatar" [src]="car.ownerImage" [alt]="car.owner"
             class="w-12 h-12 rounded-full object-cover border-2 border-purple-500/40 shrink-0" />
           <div class="flex-1 min-w-0">
             <div class="font-semibold text-white text-[0.9rem]">{{ car.owner }}</div>
